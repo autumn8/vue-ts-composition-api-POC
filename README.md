@@ -1,4 +1,23 @@
 # ts-comp
+Getting typescript, vue composition api and vuetify playing nicely.
+
+1) Update shims-vue.d.ts
+```
+declare module "*.vue" {
+  import { defineComponent } from "@vue/composition-api";
+    const Component: ReturnType<typeof defineComponent>;
+    export default Component;
+}
+```
+2) Install vue composition api
+```
+npm install @vue/composition-api
+```
+
+3) Create components with defineComponent to get ts inference.
+
+4) Add vuetify
+```vue add vuetify
 
 ## Project setup
 ```
