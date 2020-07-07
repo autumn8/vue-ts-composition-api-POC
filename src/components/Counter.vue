@@ -1,12 +1,9 @@
 <template>
-    <div>
-        <button @click="increment">
-             {{state.someText}} is: {{ state.count }}, double is: {{ state.double }}
-    
-        </button>
-  <p>{{someOtherNumber}}</p>
-    </div>
-  
+  <div>
+    <v-btn @click="increment">
+      {{ state.someText }} is: {{ state.count }}, double is: {{ state.double }}
+    </v-btn>    
+  </div>
 </template>
 
 <script lang="ts">
@@ -21,13 +18,12 @@ interface StateInterface {
 
 export default defineComponent({
   setup() {
+    const someOtherNumber: Ref<number> = ref(10);
     const state: StateInterface = reactive({
       count: 0,
       double: computed(() => state.count * 2),
       someText: "Bob"
     });
-
-    const someOtherNumber: Ref<number> = ref(10);
 
     function increment(): void {
       state.count++;

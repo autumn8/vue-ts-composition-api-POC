@@ -1,29 +1,27 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <Counter/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      
+    </v-app-bar>
+
+    <v-content>
+      <Posts />
+    </v-content>
+  </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Counter from "./components/Counter.vue";
+import Posts from "./components/Posts.vue";
+import { defineComponent } from "@vue/composition-api";
 
-export default Vue.extend({
-  name: "App",
+export default defineComponent({
   components: {
-    Counter
+    Posts
+  },
+
+  setup() {
+    console.log("setup");
   }
 });
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
