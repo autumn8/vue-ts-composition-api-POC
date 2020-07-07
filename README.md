@@ -16,6 +16,11 @@ npm install @vue/composition-api
 
 3) Create components with defineComponent to get ts inference.
 
+4) Must add lang="ts" to script tag
+```
+<script lang="ts">
+```
+
 4) Add vuetify
 ```vue add vuetify
 
