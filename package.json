@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@okta/okta-vue": "^2.0.0",
+    "@types/okta__okta-vue": "^1.2.0",
     "@vue/composition-api": "^1.0.0-beta.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
     "vuetify": "^2.2.11",
     "vuex": "^3.4.0"
   },
@@ -24,6 +26,7 @@
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-e2e-cypress": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-router": "^4.4.6",
     "@vue/cli-plugin-typescript": "~4.4.0",
     "@vue/cli-plugin-unit-jest": "~4.4.0",
     "@vue/cli-plugin-vuex": "~4.4.0",

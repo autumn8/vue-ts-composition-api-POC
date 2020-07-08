@@ -2,7 +2,7 @@
   <div>
     <v-btn @click="increment">
       {{ state.someText }} is: {{ state.count }}, double is: {{ state.double }}
-    </v-btn>    
+    </v-btn>
   </div>
 </template>
 

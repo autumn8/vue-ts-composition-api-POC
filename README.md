@@ -24,6 +24,11 @@ npm install @vue/composition-api
 4) Add vuetify
 ```vue add vuetify
 
+5) If okta is throwing types error, try:
+```
+npm install @types/okta__okta-vue --save
+```
+
 ## Project setup
 ```
 npm install
