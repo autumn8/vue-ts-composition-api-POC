@@ -19,7 +19,7 @@ import { defineComponent } from "@vue/composition-api";
 import usePosts from "../use/Posts";
 
 export default defineComponent({
-  setup() {
+  setup() {    
     const { newPost, posts, addPost, removePost } = usePosts();
     return {
       newPost,

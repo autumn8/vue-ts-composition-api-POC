@@ -1,5 +1,6 @@
 import { reactive, computed, toRefs } from "@vue/composition-api";
 
+
 export default () => {
   const state = reactive({
     newPost: "",

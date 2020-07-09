@@ -1,14 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark> 
-      <button v-if='authenticated' v-on:click='logout' id='logout-button'> Logout </button>
-      <button v-else v-on:click='login' id='login-button'> Login </button>
+    <v-app-bar app color="primary" dark>
+      <button v-if="authenticated" v-on:click="logout" id="logout-button">
+        Logout
+      </button>
+      <button v-else v-on:click="login" id="login-button">Login</button>
     </v-app-bar>
 
     <v-content>
       <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+        <v-btn @click="safeNavigate($route, 'Home')">Home</v-btn> |
+        <v-btn @click="safeNavigate($route, 'About')">About</v-btn> |
+        <v-btn @click="safeNavigate($route, 'Edit')" v-if="showEdit">Edit</v-btn>
       </div>
       <router-view />
       <Posts />
@@ -16,9 +19,11 @@
   </v-app>
 </template>
 
-<script lang="ts">
+<script>
 import Posts from "./components/Posts.vue";
-//import { defineComponent } from "@vue/composition-api";
+import Vue from "vue";
+//import { defineComponent, reactive } from "@vue/composition-api";
+import { isInGroup } from "./user";
 
 export default {
   name: "App",
@@ -27,12 +32,21 @@ export default {
   },
   data: () => ({
     title: "Vue Groups",
-    authenticated: false
+    authenticated: false,
+    showEdit: false
   }),
   watch: {
     $route: "isAuthenticated"
   },
   methods: {
+    async enableGroups() {
+      console.log(await Vue.prototype.$auth.getUser());
+      this.showEdit = await isInGroup("user");
+    },
+    safeNavigate(route, dest) {
+      if (route.name != dest) this.$router.push({ name: dest });
+    },
+
     async isAuthenticated() {
       this.authenticated = await this.$auth.isAuthenticated();
     },
@@ -47,16 +61,23 @@ export default {
   },
   created() {
     this.isAuthenticated();
+    this.enableGroups();
+
   }
 };
 
-/* export default defineComponent({
-  components: {
-    Posts
-  },
+// export default defineComponent({
+//   components: {
+//     Posts
+//   },
 
-  setup() {
-    console.log("setup");
-  }
-}); */
+//   setup() {
+//     console.log(this);
+//     const state = reactive({
+//       authenticated: false
+//     });
+
+//     return { state };
+//   }
+// });
 </script>
