@@ -32,7 +32,7 @@ export default defineComponent({
     const rules = ref([
       (v: string) => {
         return (
-          (v || "").length <= max.value ||
+          (v || "").length <= max.value || 
           `A maximum of ${max.value} characters is allowed`
         );
       }
