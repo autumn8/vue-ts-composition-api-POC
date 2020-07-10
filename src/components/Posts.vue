@@ -5,6 +5,14 @@
         {{ post }}
       </div>
     </div>
+    <v-form ref="form">
+      <v-text-field
+        v-model="model"
+        :counter="max"
+        :rules="rules"
+        label="First name"
+      ></v-text-field>
+    </v-form>
     <v-text-field
       label="Outlined"
       outlined
@@ -15,17 +23,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, ref } from "@vue/composition-api";
 import usePosts from "../use/Posts";
 
 export default defineComponent({
-  setup() {    
+  setup() {
+    const max = ref(10);
+    const rules = ref([
+      (v: string) => {
+        return (
+          (v || "").length <= max.value ||
+          `A maximum of ${max.value} characters is allowed`
+        );
+      }
+    ]);
     const { newPost, posts, addPost, removePost } = usePosts();
+
     return {
       newPost,
       posts,
       addPost,
-      removePost
+      removePost,
+      rules,
+      max
     };
   }
 });

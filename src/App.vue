@@ -11,7 +11,9 @@
       <div id="nav">
         <v-btn @click="safeNavigate($route, 'Home')">Home</v-btn> |
         <v-btn @click="safeNavigate($route, 'About')">About</v-btn> |
-        <v-btn @click="safeNavigate($route, 'Edit')" v-if="showEdit">Edit</v-btn>
+        <v-btn @click="safeNavigate($route, 'Edit')" v-if="showEdit"
+          >Edit</v-btn
+        >
       </div>
       <router-view />
       <Posts />
@@ -62,7 +64,6 @@ export default {
   created() {
     this.isAuthenticated();
     this.enableGroups();
-
   }
 };
 
