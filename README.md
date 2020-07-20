@@ -8,6 +8,14 @@ declare module "*.vue" {
     const Component: ReturnType<typeof defineComponent>;
     export default Component;
 }
+
+2) Add following rule to vscode settings.json to have eslint work correctly within ts files. Go to prefernces, search for eslint and then chose edit settings in json
+
+```"eslint.validate": [
+    "typescript"
+],
+```
+
 ```
 2) Install vue composition api
 ```
@@ -23,6 +31,8 @@ npm install @vue/composition-api
 
 4) Add vuetify
 ```vue add vuetify
+
+>>Install okta vue sdk.
 
 5) If okta is throwing types error, try:
 ```

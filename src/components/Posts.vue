@@ -19,16 +19,25 @@
       v-model="newPost"
       @keypress.enter="addPost"
     ></v-text-field>
+    <!-- <p>{{oktaAuth.key}}</p>
+    <p>{{authenticated}}</p> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
-import usePosts from "../use/Posts";
+import { defineComponent, ref, onMounted } from "@vue/composition-api";
+import usePosts from "@/composables/Posts";
+//import { useOktaAuth } from "../plugins/oktaAuth";
+import Vue from "vue";
 
 export default defineComponent({
   setup() {
+    //const oktaAuth = useOktaAuth();
+    //console.log(oktaAuth);
+    const model = ref("Stinky");
     const max = ref(10);
+    const authenticated = ref(false);
+
     const rules = ref([
       (v: string) => {
         return (
@@ -37,6 +46,11 @@ export default defineComponent({
         );
       }
     ]);
+    onMounted(async () => {
+      authenticated.value = await Vue.prototype.$auth.isAuthenticated();
+      console.log("mounted!");
+    });
+
     const { newPost, posts, addPost, removePost } = usePosts();
 
     return {
@@ -45,7 +59,10 @@ export default defineComponent({
       addPost,
       removePost,
       rules,
-      max
+      max,
+      model,
+      //oktaAuth,
+      authenticated
     };
   }
 });
